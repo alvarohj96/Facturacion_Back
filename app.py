@@ -9,6 +9,8 @@ def log_message():
     if request.is_json:
         data = request.get_json()
         print(f"Received selectedTrabajador: {data.get('selectedTrabajador')}", flush=True)
+        print(f"Received selectedProyecto: {data.get('selectedProyecto')}", flush=True)
+        print(f"Received selectedFecha: {data.get('selectedFecha')}", flush=True)
         print(f"Received horasTrabajadas: {data.get('horasTrabajadas')}", flush=True)
 
         if (data.get('horasTrabajadas') < 8 and data.get('horasTrabajadas') > 0):
