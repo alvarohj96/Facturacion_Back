@@ -7,6 +7,9 @@ from trabajador import Trabajador
 import dateutil.parser
 import pytz
 
+max_horas_L_J=8.5
+max_horas_V=6
+
 app = Flask(__name__)
 CORS(app)  # Esto permitirá todas las solicitudes de todos los orígenes
 
@@ -41,7 +44,7 @@ def log_message():
                 print(fecha_datetime.weekday(), flush=True)  # Debería imprimir <class 'int'> o <class 'float'>
                 print(trabajador_aux.get_horas_dia(fecha_datetime), flush=True)  # Debería imprimir <class 'int'> o <class 'float'>
 
-                if ((0 <= fecha_datetime.weekday() < 4) and (trabajador_aux.get_horas_dia(fecha_datetime) + horas <= 8.5)) or ((fecha_datetime.weekday() == 4 ) and (trabajador_aux.get_horas_dia(fecha_datetime) + horas <= 6)):
+                if ((0 <= fecha_datetime.weekday() < 4) and (trabajador_aux.get_horas_dia(fecha_datetime) + horas <= max_horas_L_J)) or ((fecha_datetime.weekday() == 4 ) and (trabajador_aux.get_horas_dia(fecha_datetime) + horas <= max_horas_V)):
                     trabajador_aux.sumar_horas(data.get('horasTrabajadas'), fecha_datetime)
                 else:
                     return {'status': 'Horas introducidas incorrectas.'}, 400
